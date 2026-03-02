@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Lancerin
 
-## Getting Started
+Swipe-based freelance gig matching app for the Mayar Vibecoding Competition 2026.
 
-First, run the development server:
+## Stack
+
+- Vinext (Next.js App Router on Vite)
+- NextAuth (Google OAuth)
+- Tailwind CSS
+- JSON file storage (`data/*.json`)
+- Mayar REST API (sandbox by default)
+- OpenRouter MiniMax M2.5 for gig ranking
+
+## Quick Start
+
+1. Install deps:
+
+```bash
+npm install
+```
+
+2. Configure env:
+
+```bash
+cp .env.example .env.local
+# fill actual keys in .env.local
+```
+
+3. Seed demo data:
+
+```bash
+npm run seed
+```
+
+4. Start dev server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Scripts
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `npm run dev` - run vinext dev server
+- `npm run build` - production build
+- `npm run start` - run built app
+- `npm run seed` - reset `data/*.json` demo data
+- `npm run typecheck` - TypeScript validation
+- `npm run lint` - ESLint
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Routes
 
-## Learn More
+- `/` landing page
+- `/login` Google sign-in page
+- `/app/onboarding` user setup
+- `/app/post-gig` client gig posting
+- `/app/swipe` freelancer swipe view
+- `/app/matches` match inbox
+- `/app/gig/[id]/interested` client picks freelancer
+- `/app/dashboard` payment overview
 
-To learn more about Next.js, take a look at the following resources:
+## API Endpoints
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `GET/POST /api/users`
+- `GET /api/users/me`
+- `GET/POST /api/gigs`
+- `GET /api/gigs/feed`
+- `GET /api/gigs/[id]/interested`
+- `GET/POST /api/swipes`
+- `GET/POST /api/matches`
+- `POST /api/webhooks/mayar`
+- `GET /api/dashboard`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deployment
 
-## Deploy on Vercel
+Docker build is included:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+docker build -t lancerin .
+docker run --rm -p 3000:3000 --env-file .env.local lancerin
+```
