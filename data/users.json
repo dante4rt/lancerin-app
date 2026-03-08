@@ -1,1 +1,40 @@
-[]
+[
+  {
+    "id": "demo-client-01",
+    "email": "dntqtqt@gmail.com",
+    "name": "Dante",
+    "avatar_url": "",
+    "role": "client",
+    "skills": [],
+    "hourly_rate_min": 0,
+    "hourly_rate_max": 0,
+    "bio": "Building products for Indonesian SMEs.",
+    "portfolio_url": "",
+    "mobile": "081234567890",
+    "mayar_customer_id": null,
+    "onboarded": true,
+    "created_at": "2026-03-01T08:00:00.000Z"
+  },
+  {
+    "id": "demo-freelancer-01",
+    "email": "ramadhvni@gmail.com",
+    "name": "Rama",
+    "avatar_url": "",
+    "role": "freelancer",
+    "skills": [
+      "nextjs",
+      "typescript",
+      "react",
+      "tailwind",
+      "nodejs"
+    ],
+    "hourly_rate_min": 150000,
+    "hourly_rate_max": 350000,
+    "bio": "Full-stack developer. 3 years shipping Next.js apps.",
+    "portfolio_url": "https://rama.dev",
+    "mobile": "089876543210",
+    "mayar_customer_id": null,
+    "onboarded": true,
+    "created_at": "2026-03-01T09:00:00.000Z"
+  }
+]

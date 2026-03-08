@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { motion } from "framer-motion";
 
 export default function PostGigPage() {
   const [title, setTitle] = useState("");
@@ -10,10 +11,12 @@ export default function PostGigPage() {
   const [skills, setSkills] = useState("");
   const [deadline, setDeadline] = useState("");
   const [message, setMessage] = useState("");
+  const [isError, setIsError] = useState(false);
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setMessage("Posting...");
+    setIsError(false);
 
     const res = await fetch("/api/gigs", {
       method: "POST",
@@ -33,27 +36,32 @@ export default function PostGigPage() {
 
     if (res.ok) {
       setMessage("Gig posted successfully.");
+      setIsError(false);
       setTitle("");
       setDescription("");
       setSkills("");
       setDeadline("");
     } else {
       setMessage("Failed to post gig.");
+      setIsError(true);
     }
   };
 
   return (
-    <section>
-      <p className="text-xs font-semibold tracking-[0.2em] text-zinc-500">02 CLIENT FLOW</p>
-      <h1 className="mt-2 text-2xl font-semibold text-zinc-900">Post a new gig</h1>
+    <motion.section
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+    >
+      <p className="text-xs font-semibold tracking-[0.2em] text-accent">02 CLIENT FLOW</p>
+      <h1 className="mt-2 text-2xl font-semibold text-text-primary">Post a new gig</h1>
 
-      <form onSubmit={onSubmit} className="mt-6 grid gap-4 rounded-2xl bg-white p-5">
+      <form onSubmit={onSubmit} className="mt-6 grid gap-4 rounded-2xl bg-surface border border-border p-5">
         <label className="grid gap-1 text-sm">
           Title
           <input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="rounded-lg border border-zinc-300 px-3 py-2"
+            className="rounded-lg border border-border px-3 py-2"
             required
           />
         </label>
@@ -63,7 +71,7 @@ export default function PostGigPage() {
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="min-h-28 rounded-lg border border-zinc-300 px-3 py-2"
+            className="min-h-28 rounded-lg border border-border px-3 py-2"
             required
           />
         </label>
@@ -75,7 +83,7 @@ export default function PostGigPage() {
               type="number"
               value={budgetMin}
               onChange={(e) => setBudgetMin(e.target.value)}
-              className="rounded-lg border border-zinc-300 px-3 py-2"
+              className="rounded-lg border border-border px-3 py-2"
               required
             />
           </label>
@@ -85,7 +93,7 @@ export default function PostGigPage() {
               type="number"
               value={budgetMax}
               onChange={(e) => setBudgetMax(e.target.value)}
-              className="rounded-lg border border-zinc-300 px-3 py-2"
+              className="rounded-lg border border-border px-3 py-2"
               required
             />
           </label>
@@ -96,7 +104,7 @@ export default function PostGigPage() {
           <input
             value={skills}
             onChange={(e) => setSkills(e.target.value)}
-            className="rounded-lg border border-zinc-300 px-3 py-2"
+            className="rounded-lg border border-border px-3 py-2"
             required
           />
         </label>
@@ -107,20 +115,25 @@ export default function PostGigPage() {
             type="date"
             value={deadline}
             onChange={(e) => setDeadline(e.target.value)}
-            className="rounded-lg border border-zinc-300 px-3 py-2"
+            min={new Date().toISOString().split("T")[0]}
+            className="rounded-lg border border-border px-3 py-2"
             required
           />
         </label>
 
         <button
           type="submit"
-          className="rounded-xl bg-zinc-900 px-4 py-3 text-sm font-semibold text-white hover:bg-zinc-700"
+          className="rounded-xl bg-accent px-4 py-3 text-sm font-semibold text-white hover:bg-accent-hover transition-all duration-200"
         >
           Publish Gig
         </button>
 
-        {message ? <p className="text-sm text-zinc-600">{message}</p> : null}
+        {message ? (
+          <p className={`text-sm rounded-lg px-3 py-2 ${isError ? "text-red-700 bg-red-50" : "text-accent-dark bg-accent-light"}`}>
+            {message}
+          </p>
+        ) : null}
       </form>
-    </section>
+    </motion.section>
   );
 }

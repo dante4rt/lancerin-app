@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { v4 as uuidv4 } from "uuid";
 import { requireCurrentUser } from "@/lib/api-auth";
-import { readCollection, writeCollection } from "@/lib/db";
+import { readCollection, writeCollectionAsync } from "@/lib/db";
 import type { Swipe } from "@/types";
 
 export async function GET() {
@@ -40,6 +40,6 @@ export async function POST(req: NextRequest) {
   };
 
   swipes.push(swipe);
-  writeCollection("swipes", swipes);
+  await writeCollectionAsync("swipes", swipes);
   return NextResponse.json(swipe, { status: 201 });
 }

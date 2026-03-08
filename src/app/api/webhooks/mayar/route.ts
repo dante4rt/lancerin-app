@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { readCollection, writeCollection } from "@/lib/db";
+import { readCollection, writeCollectionAsync } from "@/lib/db";
 import type { Match } from "@/types";
 
 export async function POST(req: NextRequest) {
@@ -7,7 +7,7 @@ export async function POST(req: NextRequest) {
     const payload = await req.json();
 
     const invoiceId = payload?.data?.id ?? payload?.data?.transactionId;
-    const matchId = payload?.data?.extraData?.matchId;
+    const matchId = payload?.data?.extraData?.noCustomer ?? payload?.data?.extraData?.matchId;
 
     if (invoiceId || matchId) {
       const matches = readCollection<Match>("matches");
@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
           paid_at: new Date().toISOString(),
           status: "in_progress",
         };
-        writeCollection("matches", matches);
+        await writeCollectionAsync("matches", matches);
       }
     }
 

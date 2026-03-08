@@ -2,14 +2,16 @@
 
 Swipe-based freelance gig matching app for the Mayar Vibecoding Competition 2026.
 
+Freelancers swipe on gigs, clients pick from interested freelancers and set an agreed amount. Payment goes through Lancerin's platform via Mayar — once the client pays, the freelancer can start working.
+
 ## Stack
 
 - Vinext (Next.js App Router on Vite)
 - NextAuth (Google OAuth)
-- Tailwind CSS
+- Tailwind CSS v4 + Framer Motion
 - JSON file storage (`data/*.json`)
-- Mayar REST API (sandbox by default)
-- OpenRouter MiniMax M2.5 for gig ranking
+- Mayar REST API (invoicing, customer management, transactions)
+- OpenRouter MiniMax M2.5 for AI gig ranking
 
 ## Quick Start
 
@@ -19,20 +21,20 @@ Swipe-based freelance gig matching app for the Mayar Vibecoding Competition 2026
 npm install
 ```
 
-2. Configure env:
+1. Configure env:
 
 ```bash
 cp .env.example .env.local
 # fill actual keys in .env.local
 ```
 
-3. Seed demo data:
+1. Seed demo data:
 
 ```bash
 npm run seed
 ```
 
-4. Start dev server:
+1. Start dev server:
 
 ```bash
 npm run dev

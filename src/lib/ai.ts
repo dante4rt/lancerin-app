@@ -16,7 +16,7 @@ export async function rankGigsForUser(
   gigs: Gig[],
   swipeHistory: Swipe[],
 ): Promise<AIMatchResult[]> {
-  if (!OPENROUTER_API_KEY || gigs.length === 0) {
+  if (gigs.length === 0 || !OPENROUTER_API_KEY) {
     return fallbackRanking(gigs);
   }
 
@@ -48,6 +48,9 @@ ${gigs
 Return JSON array only: [{"gig_id":"...","score":0-100,"reason":"short"}] sorted by score desc.`;
 
   try {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 10_000);
+
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -59,7 +62,10 @@ Return JSON array only: [{"gig_id":"...","score":0-100,"reason":"short"}] sorted
         messages: [{ role: "user", content: prompt }],
         temperature: 0.2,
       }),
+      signal: controller.signal,
     });
+
+    clearTimeout(timer);
 
     if (!response.ok) {
       return fallbackRanking(gigs);

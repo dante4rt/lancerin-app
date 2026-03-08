@@ -1,1 +1,26 @@
-[]
+[
+  {
+    "id": "match-demo-01",
+    "gig_id": "gig-1",
+    "freelancer_id": "demo-freelancer-01",
+    "client_id": "demo-client-01",
+    "agreed_amount": 5000000,
+    "status": "completed",
+    "mayar_invoice_id": "mock-match-demo-01",
+    "mayar_invoice_url": null,
+    "paid_at": "2026-03-04T10:00:00.000Z",
+    "created_at": "2026-03-03T12:00:00.000Z"
+  },
+  {
+    "id": "match-demo-02",
+    "gig_id": "gig-2",
+    "freelancer_id": "demo-freelancer-01",
+    "client_id": "demo-client-01",
+    "agreed_amount": 7000000,
+    "status": "in_progress",
+    "mayar_invoice_id": "mock-match-demo-02",
+    "mayar_invoice_url": null,
+    "paid_at": "2026-03-05T09:00:00.000Z",
+    "created_at": "2026-03-04T14:00:00.000Z"
+  }
+]

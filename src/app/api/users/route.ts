@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireCurrentUser } from "@/lib/api-auth";
-import { listUsers, saveUsers, upsertUserFromSession } from "@/lib/users";
+import { listUsers, saveUsersAsync, upsertUserFromSession } from "@/lib/users";
 import { createCustomer } from "@/lib/mayar";
 
 export async function GET() {
@@ -19,6 +19,7 @@ export async function POST(req: NextRequest) {
   }
 
   const body = (await req.json()) as {
+    name?: string;
     role?: "freelancer" | "client";
     skills?: string[];
     hourly_rate_min?: number;
@@ -40,6 +41,7 @@ export async function POST(req: NextRequest) {
 
   users[idx] = {
     ...users[idx],
+    name: body.name ?? users[idx].name,
     role: body.role ?? users[idx].role,
     skills: body.skills ?? users[idx].skills,
     hourly_rate_min: body.hourly_rate_min ?? users[idx].hourly_rate_min,
@@ -63,6 +65,6 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  saveUsers(users);
+  await saveUsersAsync(users);
   return NextResponse.json(users[idx]);
 }

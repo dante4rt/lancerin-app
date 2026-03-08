@@ -1,7 +1,7 @@
 export type UserRole = "freelancer" | "client";
 export type GigStatus = "open" | "matched" | "completed" | "closed";
 export type SwipeDirection = "left" | "right";
-export type MatchStatus = "pending" | "accepted" | "in_progress" | "completed";
+export type MatchStatus = "pending" | "accepted" | "in_progress" | "delivered" | "completed";
 
 export interface User {
   id: string;
@@ -47,6 +47,7 @@ export interface Match {
   gig_id: string;
   freelancer_id: string;
   client_id: string;
+  agreed_amount: number;
   status: MatchStatus;
   mayar_invoice_id: string | null;
   mayar_invoice_url: string | null;

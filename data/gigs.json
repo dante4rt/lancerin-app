@@ -1,10 +1,10 @@
 [
   {
     "id": "gig-1",
-    "client_id": "client-demo-1",
-    "client_name": "Nusantara SaaS",
-    "title": "Build Marketing Landing Page in Next.js",
-    "description": "Need a responsive landing page with conversion-focused sections and fast loading performance for a SaaS launch.",
+    "client_id": "demo-client-01",
+    "client_name": "Dante",
+    "title": "Build Landing Page for SaaS Launch",
+    "description": "Responsive marketing page with hero, features, pricing, and CTA sections. Must score 90+ on Lighthouse. Tailwind + Framer Motion preferred.",
     "budget_min": 3000000,
     "budget_max": 7000000,
     "required_skills": [
@@ -13,66 +13,15 @@
       "framer-motion"
     ],
     "deadline": "2026-03-18",
-    "status": "open",
-    "created_at": "2026-03-02T00:00:00.000Z"
+    "status": "matched",
+    "created_at": "2026-03-01T10:00:00.000Z"
   },
   {
     "id": "gig-2",
-    "client_id": "client-demo-2",
-    "client_name": "WarungCloud",
-    "title": "Redesign Mobile App UI in Figma",
-    "description": "Looking for product designer to redesign checkout and order tracking flows for Android and iOS users.",
-    "budget_min": 2500000,
-    "budget_max": 5000000,
-    "required_skills": [
-      "figma",
-      "ui-ux",
-      "design-system"
-    ],
-    "deadline": "2026-03-16",
-    "status": "open",
-    "created_at": "2026-03-02T00:00:00.000Z"
-  },
-  {
-    "id": "gig-3",
-    "client_id": "client-demo-3",
-    "client_name": "EduVerse",
-    "title": "Create 10 SEO Blog Articles (Tech)",
-    "description": "Need long-form blog content around AI tools and productivity software. Includes keyword research and on-page SEO.",
-    "budget_min": 2000000,
-    "budget_max": 4500000,
-    "required_skills": [
-      "seo",
-      "copywriting",
-      "content-marketing"
-    ],
-    "deadline": "2026-03-20",
-    "status": "open",
-    "created_at": "2026-03-02T00:00:00.000Z"
-  },
-  {
-    "id": "gig-4",
-    "client_id": "client-demo-4",
-    "client_name": "KopiKita",
-    "title": "Set Up Meta Ads for New Campaign",
-    "description": "Launch and optimize 3 ad sets for a beverage campaign targeting Jakarta and Bandung audiences.",
-    "budget_min": 1500000,
-    "budget_max": 4000000,
-    "required_skills": [
-      "meta-ads",
-      "analytics",
-      "performance-marketing"
-    ],
-    "deadline": "2026-03-14",
-    "status": "open",
-    "created_at": "2026-03-02T00:00:00.000Z"
-  },
-  {
-    "id": "gig-5",
-    "client_id": "client-demo-5",
-    "client_name": "FinTrack",
-    "title": "Integrate Payment API in Node.js Backend",
-    "description": "Implement invoice generation and webhook handling in an existing Express API. Need clean and tested code.",
+    "client_id": "demo-client-01",
+    "client_name": "Dante",
+    "title": "Integrate Mayar Payment API",
+    "description": "Add invoice generation, payment link redirect, and webhook handling to existing Express backend. Must include error handling and retry logic.",
     "budget_min": 4000000,
     "budget_max": 10000000,
     "required_skills": [
@@ -81,32 +30,66 @@
       "rest-api"
     ],
     "deadline": "2026-03-22",
-    "status": "open",
-    "created_at": "2026-03-02T00:00:00.000Z"
+    "status": "matched",
+    "created_at": "2026-03-02T10:00:00.000Z"
   },
   {
-    "id": "gig-6",
-    "client_id": "client-demo-6",
-    "client_name": "PixelStudio",
-    "title": "Edit 20 Short-Form Reels",
-    "description": "Need video editor for Instagram and TikTok reels with captions, hooks, and quick transitions.",
-    "budget_min": 1800000,
-    "budget_max": 4200000,
+    "id": "gig-3",
+    "client_id": "client-ext-01",
+    "client_name": "WarungCloud",
+    "title": "Redesign Mobile App Checkout Flow",
+    "description": "Product designer needed to redesign checkout and order tracking screens for Android and iOS. Deliver in Figma with design tokens.",
+    "budget_min": 2500000,
+    "budget_max": 5000000,
     "required_skills": [
-      "video-editing",
-      "capcut",
-      "storytelling"
+      "figma",
+      "ui-ux",
+      "design-system"
+    ],
+    "deadline": "2026-03-20",
+    "status": "open",
+    "created_at": "2026-03-02T12:00:00.000Z"
+  },
+  {
+    "id": "gig-4",
+    "client_id": "client-ext-02",
+    "client_name": "EduVerse",
+    "title": "Write 10 SEO Blog Articles on AI Tools",
+    "description": "Long-form content (1500+ words each) about AI productivity tools. Includes keyword research, meta descriptions, and internal linking strategy.",
+    "budget_min": 2000000,
+    "budget_max": 4500000,
+    "required_skills": [
+      "seo",
+      "copywriting",
+      "content-marketing"
+    ],
+    "deadline": "2026-03-25",
+    "status": "open",
+    "created_at": "2026-03-03T08:00:00.000Z"
+  },
+  {
+    "id": "gig-5",
+    "client_id": "client-ext-03",
+    "client_name": "KopiKita",
+    "title": "Launch Meta Ads Campaign for Beverage Brand",
+    "description": "Set up and optimize 3 ad sets targeting Jakarta and Bandung. A/B test creatives, track ROAS, and deliver weekly reports.",
+    "budget_min": 1500000,
+    "budget_max": 4000000,
+    "required_skills": [
+      "meta-ads",
+      "analytics",
+      "performance-marketing"
     ],
     "deadline": "2026-03-19",
     "status": "open",
-    "created_at": "2026-03-02T00:00:00.000Z"
+    "created_at": "2026-03-03T10:00:00.000Z"
   },
   {
-    "id": "gig-7",
-    "client_id": "client-demo-7",
+    "id": "gig-6",
+    "client_id": "client-ext-04",
     "client_name": "TravelMate",
-    "title": "Build Admin Dashboard with Charts",
-    "description": "Create internal analytics dashboard using React. Includes filter controls and KPI visualizations.",
+    "title": "Build Admin Dashboard with Real-Time Charts",
+    "description": "Internal analytics dashboard in React + TypeScript. Filter controls, KPI cards, and time-series charts. Connect to existing REST API.",
     "budget_min": 3500000,
     "budget_max": 8500000,
     "required_skills": [
@@ -114,16 +97,33 @@
       "typescript",
       "data-visualization"
     ],
+    "deadline": "2026-03-24",
+    "status": "open",
+    "created_at": "2026-03-03T14:00:00.000Z"
+  },
+  {
+    "id": "gig-7",
+    "client_id": "client-ext-05",
+    "client_name": "PixelStudio",
+    "title": "Edit 20 Short-Form Reels for Instagram",
+    "description": "Need video editor for IG and TikTok reels with captions, hooks, and quick transitions. CapCut or Premiere Pro. Deliver within 5 days.",
+    "budget_min": 1800000,
+    "budget_max": 4200000,
+    "required_skills": [
+      "video-editing",
+      "capcut",
+      "storytelling"
+    ],
     "deadline": "2026-03-21",
     "status": "open",
-    "created_at": "2026-03-02T00:00:00.000Z"
+    "created_at": "2026-03-04T08:00:00.000Z"
   },
   {
     "id": "gig-8",
-    "client_id": "client-demo-8",
+    "client_id": "client-ext-06",
     "client_name": "LocalMart",
-    "title": "Audit and Improve Website Core Web Vitals",
-    "description": "Need frontend performance optimization focused on LCP, CLS, and INP with practical implementation.",
+    "title": "Optimize Core Web Vitals for E-Commerce Site",
+    "description": "Frontend performance audit and fixes. Target: LCP < 2.5s, CLS < 0.1, INP < 200ms. Next.js site with 50+ product pages.",
     "budget_min": 2500000,
     "budget_max": 6000000,
     "required_skills": [
@@ -131,8 +131,26 @@
       "nextjs",
       "lighthouse"
     ],
-    "deadline": "2026-03-17",
+    "deadline": "2026-03-23",
     "status": "open",
-    "created_at": "2026-03-02T00:00:00.000Z"
+    "created_at": "2026-03-04T12:00:00.000Z"
+  },
+  {
+    "id": "gig-9",
+    "client_id": "demo-client-01",
+    "client_name": "Dante",
+    "title": "Build Real-Time Notification System",
+    "description": "WebSocket-based notification service for a Next.js app. Push notifications for matches, payments, and deliveries. TypeScript + Redis pub/sub.",
+    "budget_min": 3000000,
+    "budget_max": 8000000,
+    "required_skills": [
+      "nodejs",
+      "typescript",
+      "websocket",
+      "nextjs"
+    ],
+    "deadline": "2026-03-26",
+    "status": "open",
+    "created_at": "2026-03-05T10:00:00.000Z"
   }
 ]

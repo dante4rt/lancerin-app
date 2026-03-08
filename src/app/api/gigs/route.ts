@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { v4 as uuidv4 } from "uuid";
 import { requireCurrentUser } from "@/lib/api-auth";
-import { readCollection, writeCollection } from "@/lib/db";
+import { readCollection, writeCollectionAsync } from "@/lib/db";
 import type { Gig } from "@/types";
 
 export async function GET(req: NextRequest) {
@@ -33,6 +33,14 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid payload" }, { status: 400 });
   }
 
+  const today = new Date().toISOString().split("T")[0];
+  if (body.deadline < today) {
+    return NextResponse.json(
+      { error: "Deadline cannot be in the past" },
+      { status: 400 },
+    );
+  }
+
   const gigs = readCollection<Gig>("gigs");
   const gig: Gig = {
     id: uuidv4(),
@@ -49,6 +57,6 @@ export async function POST(req: NextRequest) {
   };
 
   gigs.push(gig);
-  writeCollection("gigs", gigs);
+  await writeCollectionAsync("gigs", gigs);
   return NextResponse.json(gig, { status: 201 });
 }

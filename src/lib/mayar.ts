@@ -60,14 +60,36 @@ export async function createCustomer(input: {
 export async function createInvoice(
   input: CreateInvoiceInput,
 ): Promise<MayarInvoiceResponse> {
-  return mayarFetch<MayarInvoiceResponse>("/invoice/create", {
+  const res = await mayarFetch<MayarInvoiceResponse>("/invoice/create", {
     method: "POST",
     body: JSON.stringify(input),
   });
+
+  // Sandbox returns .myr.id links — the working domain is .mayar.shop
+  if (res.data?.link) {
+    res.data.link = res.data.link.replace(".myr.id", ".mayar.shop");
+  }
+
+  return res;
 }
 
 export async function getTransactions(page = 1): Promise<MayarTransactionsResponse> {
   return mayarFetch<MayarTransactionsResponse>(`/transaction/list?page=${page}`, {
     method: "GET",
   });
+}
+
+export interface MayarInvoiceDetail {
+  id: string;
+  amount: number;
+  status: string;
+  link: string;
+  paymentUrl: string;
+}
+
+export async function getInvoiceDetail(invoiceId: string): Promise<MayarInvoiceDetail> {
+  const res = await mayarFetch<{ data: MayarInvoiceDetail }>(`/invoice/${invoiceId}`, {
+    method: "GET",
+  });
+  return res.data;
 }

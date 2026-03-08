@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import type { Session } from "next-auth";
-import { readCollection, writeCollection } from "@/lib/db";
+import { readCollection, writeCollection, writeCollectionAsync } from "@/lib/db";
 import type { User, UserRole } from "@/types";
 
 function defaultUser(session: Session, role: UserRole = "freelancer"): User {
@@ -28,6 +28,10 @@ export function listUsers(): User[] {
 
 export function saveUsers(users: User[]): void {
   writeCollection("users", users);
+}
+
+export async function saveUsersAsync(users: User[]): Promise<void> {
+  await writeCollectionAsync("users", users);
 }
 
 export function findUserByEmail(email: string): User | null {

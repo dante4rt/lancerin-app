@@ -1,0 +1,54 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "lancerin",
+	"keep_vars": true,
+	"compatibility_date": "2026-03-06",
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	"main": "./worker/index.ts",
+	// Runtime config for the Worker. Keep secrets out of version control and set
+	// them with `npx wrangler secret put <NAME>`.
+	"vars": {
+		"MAYAR_BASE_URL": "https://api.mayar.club/hl/v1",
+		"OPENROUTER_MODEL": "minimax/minimax-m2.5"
+	},
+	// Add deployment-specific non-secret vars in Cloudflare or here when ready:
+	// "NEXTAUTH_URL": "https://your-domain.com",
+	// "MAYAR_REDIRECT_URL": "https://your-domain.com/app/matches",
+	// "GOOGLE_CLIENT_ID": "your-google-client-id",
+	// Uncomment after creating KV namespace:
+	//   npx wrangler kv:namespace create LANCERIN_KV
+	// Then paste the returned ID below.
+	// "kv_namespaces": [
+	//   { "binding": "LANCERIN_KV", "id": "YOUR_KV_ID_HERE" }
+	// ],
+	"assets": {
+		"not_found_handling": "none",
+		"binding": "ASSETS"
+	},
+	"images": {
+		"binding": "IMAGES"
+	},
+	"observability": {
+		"enabled": false,
+		"head_sampling_rate": 1,
+		"logs": {
+			"enabled": true,
+			"head_sampling_rate": 1,
+			"persist": true,
+			"invocation_logs": true
+		},
+		"traces": {
+			"enabled": false,
+			"persist": true,
+			"head_sampling_rate": 1
+		}
+	},
+	"kv_namespaces": [
+		{
+			"binding": "LANCERIN_KV",
+			"id": "c958b7ea19de47109058ea06753c9529"
+		}
+	]
+}
