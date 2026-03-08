@@ -1,82 +1,65 @@
 # Lancerin
 
-Swipe-based freelance gig matching app for the Mayar Vibecoding Competition 2026.
+Swipe-based freelance gig matching. Freelancers swipe on gigs, clients pick from interested freelancers. Payment flows through Lancerin via [Mayar](https://mayar.id).
 
-Freelancers swipe on gigs, clients pick from interested freelancers and set an agreed amount. Payment goes through Lancerin's platform via Mayar — once the client pays, the freelancer can start working.
+Built for the **Mayar Vibecoding Competition 2026**.
+
+**Live:** [lancerin.rxmxdhxni.workers.dev](https://lancerin.rxmxdhxni.workers.dev)
+
+## How it works
+
+1. **Client** posts a gig with budget range, skills, and deadline
+2. **Freelancer** sees AI-ranked gigs and swipes right to apply
+3. **Client** picks a freelancer and sets an agreed amount
+4. **Payment** — Mayar generates an invoice, client pays through the link
+5. **Freelancer** delivers, client confirms — gig complete
 
 ## Stack
 
-- Vinext (Next.js App Router on Vite)
-- NextAuth (Google OAuth)
-- Tailwind CSS v4 + Framer Motion
-- JSON file storage (`data/*.json`)
-- Mayar REST API (invoicing, customer management, transactions)
-- OpenRouter MiniMax M2.5 for AI gig ranking
+| Layer     | Tech                                          |
+| --------- | --------------------------------------------- |
+| Framework | Vinext (Next.js App Router on Vite)           |
+| Auth      | NextAuth v4, Google OAuth                     |
+| UI        | Tailwind CSS v4, Framer Motion, Iconify Solar |
+| AI        | OpenRouter (MiniMax M2.5) for gig ranking     |
+| Payments  | Mayar REST API                                |
+| Storage   | JSON files (dev), Cloudflare KV (prod)        |
+| Deploy    | Cloudflare Workers                            |
 
-## Quick Start
-
-1. Install deps:
+## Setup
 
 ```bash
 npm install
+cp .env.example .env.local   # fill in keys
+npm run seed                  # reset demo data
+npm run dev                   # http://localhost:3000
 ```
 
-1. Configure env:
+### Environment variables
 
-```bash
-cp .env.example .env.local
-# fill actual keys in .env.local
-```
-
-1. Seed demo data:
-
-```bash
-npm run seed
-```
-
-1. Start dev server:
-
-```bash
-npm run dev
-```
+See `.env.example`. Required: `NEXTAUTH_SECRET`, `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`. Optional: `MAYAR_API_KEY`, `OPENROUTER_API_KEY` (app works without these using fallbacks).
 
 ## Scripts
 
-- `npm run dev` - run vinext dev server
-- `npm run build` - production build
-- `npm run start` - run built app
-- `npm run seed` - reset `data/*.json` demo data
-- `npm run typecheck` - TypeScript validation
-- `npm run lint` - ESLint
+| Command             | Description                        |
+| ------------------- | ---------------------------------- |
+| `npm run dev`       | Vinext dev server                  |
+| `npm run build`     | Production build                   |
+| `npm run seed`      | Reset local `data/*.json`          |
+| `npm run seed:kv`   | Reset local + remote Cloudflare KV |
+| `npm run deploy`    | Deploy to Cloudflare Workers       |
+| `npm run typecheck` | TypeScript strict check            |
+| `npm run lint`      | ESLint                             |
 
-## Routes
-
-- `/` landing page
-- `/login` Google sign-in page
-- `/app/onboarding` user setup
-- `/app/post-gig` client gig posting
-- `/app/swipe` freelancer swipe view
-- `/app/matches` match inbox
-- `/app/gig/[id]/interested` client picks freelancer
-- `/app/dashboard` payment overview
-
-## API Endpoints
-
-- `GET/POST /api/users`
-- `GET /api/users/me`
-- `GET/POST /api/gigs`
-- `GET /api/gigs/feed`
-- `GET /api/gigs/[id]/interested`
-- `GET/POST /api/swipes`
-- `GET/POST /api/matches`
-- `POST /api/webhooks/mayar`
-- `GET /api/dashboard`
-
-## Deployment
-
-Docker build is included:
+## Deploy to Cloudflare Workers
 
 ```bash
-docker build -t lancerin .
-docker run --rm -p 3000:3000 --env-file .env.local lancerin
+npm run build
+npx wrangler deploy
 ```
+
+Secrets (set via `npx wrangler secret put <NAME>`): `NEXTAUTH_SECRET`, `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `MAYAR_API_KEY`, `OPENROUTER_API_KEY`.
+
+## License
+
+[MIT](LICENSE)
