@@ -4,6 +4,7 @@ import { type ReactNode, useRef, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion, useInView } from "framer-motion";
 import { Icon } from "@iconify/react";
+import { LandingStatOrbit } from "@/components/landing-stat-orbit";
 
 /* ─── Scroll-triggered reveal ──────────────────────────── */
 
@@ -285,102 +286,7 @@ export default function HomePage() {
 
           {/* Right: floating stat cards — desktop only (lg+) */}
           <Reveal delay={0.3} className="hidden lg:block">
-            <div className="relative h-[380px]">
-              {/* Card 1 — top right */}
-              <motion.div
-                animate={{ y: [0, -6, 0] }}
-                transition={{
-                  duration: 5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="absolute top-4 right-0 bg-surface rounded-2xl border border-border p-5 shadow-sm w-[220px]"
-              >
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-9 h-9 rounded-lg bg-accent-light flex items-center justify-center">
-                    <Icon
-                      icon="solar:hand-stars-linear"
-                      width={18}
-                      height={18}
-                      className="text-accent"
-                    />
-                  </div>
-                  <p className="text-xs font-medium text-text-muted">
-                    Daily swipes
-                  </p>
-                </div>
-                <p className="text-2xl font-bold text-text-primary tracking-tight">
-                  2,847
-                </p>
-                <p className="text-[11px] text-accent font-medium mt-1">
-                  +12.3% this week
-                </p>
-              </motion.div>
-
-              {/* Card 2 — center left */}
-              <motion.div
-                animate={{ y: [0, 8, 0] }}
-                transition={{
-                  duration: 6,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 1,
-                }}
-                className="absolute top-28 left-0 bg-surface rounded-2xl border border-border p-5 shadow-sm w-[200px]"
-              >
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-9 h-9 rounded-lg bg-accent-light flex items-center justify-center">
-                    <Icon
-                      icon="solar:users-group-rounded-linear"
-                      width={18}
-                      height={18}
-                      className="text-accent"
-                    />
-                  </div>
-                  <p className="text-xs font-medium text-text-muted">
-                    Matches
-                  </p>
-                </div>
-                <p className="text-2xl font-bold text-text-primary tracking-tight">
-                  436
-                </p>
-                <p className="text-[11px] text-accent font-medium mt-1">
-                  This month
-                </p>
-              </motion.div>
-
-              {/* Card 3 — bottom right */}
-              <motion.div
-                animate={{ y: [0, -5, 0] }}
-                transition={{
-                  duration: 4.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: 0.5,
-                }}
-                className="absolute bottom-4 right-8 bg-surface rounded-2xl border border-border p-5 shadow-sm w-[210px]"
-              >
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-9 h-9 rounded-lg bg-accent-light flex items-center justify-center">
-                    <Icon
-                      icon="solar:wallet-linear"
-                      width={18}
-                      height={18}
-                      className="text-accent"
-                    />
-                  </div>
-                  <p className="text-xs font-medium text-text-muted">
-                    Invoiced
-                  </p>
-                </div>
-                <p className="text-2xl font-bold text-text-primary tracking-tight">
-                  Rp 47.2M
-                </p>
-                <p className="text-[11px] text-accent font-medium mt-1">
-                  Via Mayar
-                </p>
-              </motion.div>
-            </div>
+            <LandingStatOrbit />
           </Reveal>
         </div>
       </section>
