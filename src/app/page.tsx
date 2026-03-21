@@ -4,7 +4,9 @@ import { type ReactNode, useRef, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion, useInView } from "framer-motion";
 import { Icon } from "@iconify/react";
-import { LandingStatOrbit } from "@/components/landing-stat-orbit";
+import { LandingHero } from "@/components/landing-hero";
+import { LandingFeatures } from "@/components/landing-features";
+import { LandingCta } from "@/components/landing-cta";
 
 /* ─── Scroll-triggered reveal ──────────────────────────── */
 
@@ -86,39 +88,6 @@ const HOW_IT_WORKS = [
   },
 ];
 
-const FEATURES = [
-  {
-    icon: "solar:users-group-rounded-linear",
-    title: "Reach freelancers where they are",
-    desc: "Post gigs and let matched freelancers come to you through swipe-based interest signals.",
-  },
-  {
-    icon: "solar:star-linear",
-    title: "AI scores every match",
-    desc: "Our AI analyzes skills, rates, and history to rank the best-fit gigs for every freelancer.",
-  },
-  {
-    icon: "solar:chat-round-dots-linear",
-    title: "Dual-role support",
-    desc: "Whether hiring or freelancing, switch between posting gigs and swiping on opportunities.",
-  },
-  {
-    icon: "solar:smartphone-2-linear",
-    title: "Swipe from anywhere",
-    desc: "A responsive interface that works on any device. Browse and match on the go.",
-  },
-  {
-    icon: "solar:wallet-linear",
-    title: "Automated invoicing",
-    desc: "Invoices generated the moment a match is created. No manual billing through Mayar.",
-  },
-  {
-    icon: "solar:chart-square-linear",
-    title: "Track payments and progress",
-    desc: "A built-in dashboard shows earnings, pending payments, and transaction history.",
-  },
-];
-
 const PLANS = [
   {
     name: "Starter",
@@ -191,105 +160,8 @@ export default function HomePage() {
         Swipe. Match. Get paid — the fastest way to find freelance gigs.
       </div>
 
-      {/* ── 01 HERO ── */}
-      <section className="relative px-6 pt-20 pb-14 md:pt-28 md:pb-20 lg:min-h-[calc(100dvh-40px)] flex flex-col justify-center overflow-hidden">
-        {/* Background: radial gradient glow + subtle mesh */}
-        <div className="absolute inset-0 bg-surface" aria-hidden="true" />
-        <div
-          className="absolute inset-0 opacity-60"
-          aria-hidden="true"
-          style={{
-            background:
-              "radial-gradient(ellipse 70% 50% at 20% 50%, var(--accent-light) 0%, transparent 70%), radial-gradient(ellipse 40% 60% at 80% 30%, rgba(107,158,123,0.08) 0%, transparent 60%)",
-          }}
-        />
-        {/* Floating accent orb — top right */}
-        <div
-          className="absolute -top-24 -right-24 w-[400px] h-[400px] rounded-full opacity-[0.07] blur-3xl"
-          aria-hidden="true"
-          style={{ background: "var(--accent)" }}
-        />
-
-        <div className="relative max-w-6xl mx-auto w-full grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left: copy */}
-          <div className="text-center lg:text-left">
-            <Reveal delay={0.1}>
-              <p className="font-mono text-[11px] tracking-[0.25em] uppercase text-accent mb-5">
-                Swipe-based freelancing
-              </p>
-            </Reveal>
-
-            <Reveal delay={0.15}>
-              <h1 className="text-[2.25rem] sm:text-[2.75rem] md:text-[3.25rem] lg:text-[4rem] font-bold text-text-primary leading-[1.05] tracking-[-0.035em]">
-                Lancerin
-              </h1>
-            </Reveal>
-
-            <Reveal delay={0.2}>
-              <p className="mt-2 text-lg md:text-xl lg:text-2xl font-medium text-text-secondary leading-snug tracking-[-0.01em]">
-                Your 24/7{" "}
-                <span className="text-accent font-semibold">
-                  Freelance Matching
-                </span>{" "}
-                Assistant
-              </p>
-            </Reveal>
-
-            <Reveal delay={0.3}>
-              <p className="mt-6 text-base text-text-secondary max-w-[52ch] leading-relaxed mx-auto lg:mx-0">
-                Find gigs, match with clients, and get paid — all with a swipe.
-                AI ranks opportunities and Mayar handles invoicing automatically.
-              </p>
-            </Reveal>
-
-            <Reveal delay={0.4}>
-              <div className="mt-10 flex flex-wrap gap-4 justify-center lg:justify-start">
-                <Link
-                  href="/app"
-                  className="inline-flex items-center gap-2 bg-accent text-white px-8 py-3.5 rounded-xl font-semibold text-[15px] hover:bg-accent-hover active:scale-[0.97] transition-all duration-200"
-                >
-                  Get Started
-                  <Icon
-                    icon="solar:arrow-right-linear"
-                    width={18}
-                    height={18}
-                  />
-                </Link>
-                <a
-                  href="#how-it-works"
-                  className="inline-flex items-center gap-2 border-2 border-border px-8 py-3.5 rounded-xl font-semibold text-[15px] text-text-primary hover:border-accent hover:text-accent transition-all duration-200"
-                >
-                  Learn More
-                </a>
-              </div>
-            </Reveal>
-
-            {/* Stat pills — visible on tablet, hidden on mobile and desktop (desktop shows cards) */}
-            <Reveal delay={0.45} className="hidden md:flex lg:hidden flex-wrap gap-3 mt-10 justify-center">
-              <div className="inline-flex items-center gap-2 bg-surface rounded-full border border-border px-4 py-2">
-                <Icon icon="solar:hand-stars-linear" width={16} height={16} className="text-accent" />
-                <span className="text-sm font-semibold text-text-primary">2,847</span>
-                <span className="text-xs text-text-muted">swipes/day</span>
-              </div>
-              <div className="inline-flex items-center gap-2 bg-surface rounded-full border border-border px-4 py-2">
-                <Icon icon="solar:users-group-rounded-linear" width={16} height={16} className="text-accent" />
-                <span className="text-sm font-semibold text-text-primary">436</span>
-                <span className="text-xs text-text-muted">matches</span>
-              </div>
-              <div className="inline-flex items-center gap-2 bg-surface rounded-full border border-border px-4 py-2">
-                <Icon icon="solar:wallet-linear" width={16} height={16} className="text-accent" />
-                <span className="text-sm font-semibold text-text-primary">Rp 47.2M</span>
-                <span className="text-xs text-text-muted">invoiced</span>
-              </div>
-            </Reveal>
-          </div>
-
-          {/* Right: floating stat cards — desktop only (lg+) */}
-          <Reveal delay={0.3} className="hidden lg:block">
-            <LandingStatOrbit />
-          </Reveal>
-        </div>
-      </section>
+      {/* ── 01 HERO (GSAP word stagger) ── */}
+      <LandingHero />
 
       {/* ── Hero visual — scrolling categories strip ── */}
       <section className="bg-surface px-6 pb-16 md:pb-24 overflow-hidden">
@@ -442,68 +314,8 @@ export default function HomePage() {
         </Reveal>
       </section>
 
-      {/* ── 05 FEATURES ── */}
-      <section className="relative bg-background bg-dots px-6 py-20 md:py-28">
-        <div className="max-w-6xl mx-auto">
-          <Reveal>
-            <h2 className="text-3xl md:text-[2.75rem] font-bold text-text-primary leading-[1.1] tracking-[-0.02em]">
-              Your freelance workflow,
-              <br />
-              <span className="text-accent">supercharged</span>
-            </h2>
-          </Reveal>
-
-          {/* Asymmetric 2-col grid: first col offset down for zig-zag feel */}
-          <div className="mt-14 grid gap-5 md:grid-cols-2">
-            {/* Left column — offset top on desktop */}
-            <div className="space-y-5 md:pt-12">
-              {FEATURES.filter((_, i) => i % 2 === 0).map((feat, i) => (
-                <Reveal key={i} delay={i * 0.1}>
-                  <div className="group bg-surface rounded-2xl border border-border p-7 hover:border-accent/60 hover:shadow-md transition-all duration-300">
-                    <div className="w-11 h-11 rounded-xl bg-accent-light flex items-center justify-center mb-5 group-hover:bg-accent transition-colors duration-300">
-                      <Icon
-                        icon={feat.icon}
-                        width={22}
-                        height={22}
-                        className="text-accent group-hover:text-white transition-colors duration-300"
-                      />
-                    </div>
-                    <h3 className="text-[15px] font-bold text-text-primary mb-2 leading-snug">
-                      {feat.title}
-                    </h3>
-                    <p className="text-sm text-text-secondary leading-relaxed">
-                      {feat.desc}
-                    </p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-            {/* Right column — flush top */}
-            <div className="space-y-5">
-              {FEATURES.filter((_, i) => i % 2 === 1).map((feat, i) => (
-                <Reveal key={i} delay={i * 0.1 + 0.05}>
-                  <div className="group bg-surface rounded-2xl border border-border p-7 hover:border-accent/60 hover:shadow-md transition-all duration-300">
-                    <div className="w-11 h-11 rounded-xl bg-accent-light flex items-center justify-center mb-5 group-hover:bg-accent transition-colors duration-300">
-                      <Icon
-                        icon={feat.icon}
-                        width={22}
-                        height={22}
-                        className="text-accent group-hover:text-white transition-colors duration-300"
-                      />
-                    </div>
-                    <h3 className="text-[15px] font-bold text-text-primary mb-2 leading-snug">
-                      {feat.title}
-                    </h3>
-                    <p className="text-sm text-text-secondary leading-relaxed">
-                      {feat.desc}
-                    </p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* ── 05 FEATURES (GSAP scroll stagger) ── */}
+      <LandingFeatures />
 
       {/* ── 06 PRICING ── */}
       <section className="bg-surface px-6 py-20 md:py-28">
@@ -517,8 +329,10 @@ export default function HomePage() {
           <div className="mt-14 grid gap-5 md:grid-cols-3">
             {PLANS.map((plan, i) => (
               <Reveal key={i} delay={i * 0.1}>
-                <div
-                  className={`rounded-2xl border p-7 transition-all duration-300 h-full ${
+                <motion.div
+                  whileHover={{ y: -6, scale: 1.02 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  className={`rounded-2xl border p-7 transition-[border-color,box-shadow] duration-300 h-full ${
                     plan.highlighted
                       ? "border-accent bg-accent-light/30 shadow-lg ring-1 ring-accent/20"
                       : "border-border bg-surface hover:border-accent/40"
@@ -561,7 +375,7 @@ export default function HomePage() {
                   >
                     {plan.highlighted ? "Start Free Trial" : "Get Started"}
                   </Link>
-                </div>
+                </motion.div>
               </Reveal>
             ))}
           </div>
@@ -670,35 +484,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── CTA ── */}
-      <section className="bg-dark-bg px-6 py-20 md:py-28 overflow-hidden">
-        <Reveal className="relative max-w-5xl mx-auto text-center">
-          {/* Dashed lines — left and right */}
-          <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 flex items-center pointer-events-none" aria-hidden="true">
-            <div className="flex-1 border-t-2 border-dashed border-dark-muted/25" />
-            <div className="w-[min(600px,80vw)] shrink-0" />
-            <div className="flex-1 border-t-2 border-dashed border-dark-muted/25" />
-          </div>
-
-          <p className="font-mono text-[11px] tracking-[0.3em] uppercase text-dark-muted mb-8">
-            Ready to start?
-          </p>
-
-          <h2 className="relative text-4xl md:text-7xl lg:text-8xl font-bold text-dark-text leading-[0.95] tracking-[-0.03em] uppercase">
-            We&rsquo;re ready
-            <br />
-            to go
-          </h2>
-
-          <Link
-            href="/app"
-            className="inline-flex items-center gap-2 mt-10 bg-[#EEF1EF] text-dark-bg px-10 py-4 rounded-full font-semibold text-[15px] hover:bg-background active:scale-[0.97] transition-all duration-200"
-          >
-            Get started
-            <Icon icon="solar:arrow-right-linear" width={18} height={18} />
-          </Link>
-        </Reveal>
-      </section>
+      {/* ── CTA (GSAP word stagger + line draw-in) ── */}
+      <LandingCta />
 
       {/* ── Footer ── */}
       <footer className="bg-dark-bg border-t border-white/10 px-6 py-6">
